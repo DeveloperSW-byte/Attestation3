@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список студентов</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<h1>Студенты</h1>
+<a href="/students/add">Добавить студента</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Организация</th>
+        <th>Активен</th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName + ' ' + student.lastName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.phone}"></td>
+        <td th:text="${student.orgName}"></td>
+<!--        <td th:text="${student.active ? 'Да' : 'Нет'}"></td>-->
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить курс</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<h1>Добавить новый курс</h1>
+<form th:action="@{/courses/add}" method="post" th:object="${course}">
+    <p>Название: <input type="text" th:field="*{title}" />
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+    </p>
+    <p>Описание: <input type="text" th:field="*{description}" />
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </p>
+    <p><button type="submit">Сохранить</button></p>
+</form>
+</body>
+</html>

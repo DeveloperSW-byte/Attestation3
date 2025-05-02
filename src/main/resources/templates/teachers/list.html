@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список преподавателей</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<h1>Преподаватели</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Email</th>
+        <th>Кафедра</th>
+    </tr>
+    <tr th:each="teacher : ${teachers}">
+        <td th:text="${teacher.id}"></td>
+        <td th:text="${teacher.fullName}"></td>
+        <td th:text="${teacher.email}"></td>
+        <td th:text="${teacher.department}"></td>
+    </tr>
+</table>
+</body>
+</html>

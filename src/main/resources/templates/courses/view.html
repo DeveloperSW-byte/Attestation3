@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали курса</title>
+</head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<h1 th:text="${course.title}">Название курса</h1>
+<p><strong>Описание:</strong> <span th:text="${course.description}">Описание курса</span></p>
+
+<p><a th:href="@{/courses}">Назад к списку курсов</a></p>
+</body>
+</html>

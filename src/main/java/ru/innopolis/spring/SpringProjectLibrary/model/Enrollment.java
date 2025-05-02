@@ -32,4 +32,6 @@ public class Enrollment {
     private String status;
 
     private LocalDate enrolledAt;
+
+    private LocalDate enrollmentDate;
 }

@@ -2,8 +2,9 @@ package ru.innopolis.spring.SpringProjectLibrary.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.innopolis.spring.SpringProjectLibrary.repository.StudentRepository;
+import ru.innopolis.spring.SpringProjectLibrary.dto.StudentDTO;
 import ru.innopolis.spring.SpringProjectLibrary.model.Student;
+import ru.innopolis.spring.SpringProjectLibrary.repository.StudentRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,26 +12,42 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-
     private final StudentRepository studentRepository;
 
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<StudentDTO> getAllStudents() {
+        return studentRepository.findAll().stream()
+                .map(this::toDTO)
+                .toList();
     }
 
-    public Optional<Student> getStudentById(Long id) {
-        return studentRepository.findById(id);
+    public Optional<StudentDTO> getById(Long id) {
+        return studentRepository.findById(id)
+                .map(this::toDTO);
     }
 
-    public Student createStudent(Student student) {
-        return studentRepository.save(student);
+    public void save(StudentDTO dto) {
+        studentRepository.save(toEntity(dto));
     }
 
-    public void deleteStudent(Long id) {
+    public void delete(Long id) {
         studentRepository.deleteById(id);
     }
 
-    public List<Student> findByOrgName(String orgName) {
-        return studentRepository.findByOrgName(orgName);
+    private StudentDTO toDTO(Student student) {
+        StudentDTO dto = new StudentDTO();
+        dto.setId(student.getId());
+        dto.setFirstName(student.getFirstName());
+        dto.setLastName(student.getLastName());
+        dto.setEmail(student.getEmail());
+        return dto;
+    }
+
+    private Student toEntity(StudentDTO dto) {
+        Student student = new Student();
+        student.setId(dto.getId());
+        student.setFirstName(dto.getFirstName());
+        student.setLastName(dto.getLastName());
+        student.setEmail(dto.getEmail());
+        return student;
     }
 }

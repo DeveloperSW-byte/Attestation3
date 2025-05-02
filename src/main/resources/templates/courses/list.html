@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список курсов</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Курсы</h1>
+
+<a href="/courses/add">Добавить курс</a>
+<br/><br/>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>ID Преподавателя</th>
+    </tr>
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.id}"></td>
+        <td th:text="${course.title}"></td>
+        <td th:text="${course.description}"></td>
+        <td th:text="${course.teacher != null ? course.teacher.id : 'Нет преподавателя'}"></td>
+        <td>
+            <a th:href="@{/courses/{id}(id=${course.id})}">Просмотр</a> |
+            <a th:href="@{/courses/delete/{id}(id=${course.id})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

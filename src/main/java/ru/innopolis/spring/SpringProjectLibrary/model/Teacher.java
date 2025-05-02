@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import ru.innopolis.spring.SpringProjectLibrary.dto.TeacherDTO;
 
 @Entity
 @Table(name = "teachers")
@@ -16,13 +17,14 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Teacher {
+public class Teacher extends TeacherDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private String email;
     private String department;
 }

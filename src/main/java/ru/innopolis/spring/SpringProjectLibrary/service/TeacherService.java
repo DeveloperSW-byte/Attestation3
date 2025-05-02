@@ -2,11 +2,12 @@ package ru.innopolis.spring.SpringProjectLibrary.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.innopolis.spring.SpringProjectLibrary.dto.TeacherDTO;
 import ru.innopolis.spring.SpringProjectLibrary.repository.TeacherRepository;
-import ru.innopolis.spring.SpringProjectLibrary.model.Teacher;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -14,16 +15,19 @@ public class TeacherService {
 
     private final TeacherRepository teacherRepository;
 
-    public List<Teacher> getAllTeachers() {
-        return teacherRepository.findAll();
+    public List<TeacherDTO> getAllTeachers() {
+        return teacherRepository.findAll().stream()
+                .map(TeacherDTO::fromEntity)
+                .collect(Collectors.toList());
     }
 
-    public Optional<Teacher> getById(Long id) {
-        return teacherRepository.findById(id);
+    public Optional<TeacherDTO> getById(Long id) {
+        return teacherRepository.findById(id)
+                .map(TeacherDTO::fromEntity);
     }
 
-    public Teacher save(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public void save(TeacherDTO dto) {
+        teacherRepository.save(dto.toEntity());
     }
 
     public void delete(Long id) {
