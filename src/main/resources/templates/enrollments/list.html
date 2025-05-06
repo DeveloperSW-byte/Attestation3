@@ -5,24 +5,36 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:replace="fragments/header :: body"></div>
-
+<div th:replace="~{fragments/header :: body}"></div>
 <h1>Записи на курсы</h1>
+
+<a href="/enrollments/add">Добавить зачисление</a>
+<br/><br/>
+
 <table border="1">
+    <thead>
     <tr>
         <th>ID</th>
-        <th>ID Студента</th>
-        <th>ID Курса</th>
+        <th>Студент</th>
+        <th>Курс</th>
         <th>Статус</th>
         <th>Дата записи</th>
+        <th>Действия</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="enrollment : ${enrollments}">
-        <td th:text="${enrollment.id}"></td>
-        <td th:text="${enrollment.student.id}"></td>
-        <td th:text="${enrollment.course.id}"></td>
-        <td th:text="${enrollment.status}"></td>
-        <td th:text="${enrollment.enrolledAt}"></td>
+        <td th:text="${enrollment.id}">1</td>
+        <td th:text="${enrollment.studentName}">Имя студента</td>
+        <td th:text="${enrollment.courseTitle}">Название курса</td>
+        <td th:text="${enrollment.status}">Статус</td>
+        <td th:text="${#temporals.format(enrollment.enrollmentDate, 'dd.MM.yyyy')}">01.01.2025</td>
+        <td>
+            <a th:href="@{'/enrollments/' + ${enrollment.id}}">Подробнее</a>
+        </td>
     </tr>
+    </tbody>
 </table>
+
 </body>
 </html>

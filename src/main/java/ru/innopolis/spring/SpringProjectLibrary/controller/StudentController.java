@@ -20,33 +20,35 @@ public class StudentController {
 
     @GetMapping
     public String listStudents(Model model) {
-        List<StudentDTO> students = studentService.getAllStudents(); // ✅ уже DTO
+        List<StudentDTO> students = studentService.getAllStudents();
         model.addAttribute("students", students);
-        return "students/list";
+        return "students/list"; // шаблон: src/main/resources/templates/students/list.html
     }
 
     @GetMapping("/add")
-    public String showAddStudentForm(Model model) {
+    public String showAddForm(Model model) {
         model.addAttribute("student", new StudentDTO());
-        return "students/add";
+        return "students/add"; // шаблон: src/main/resources/templates/students/add.html
     }
 
     @PostMapping("/add")
-    public String addStudent(@ModelAttribute @Valid StudentDTO studentDto, BindingResult bindingResult, Model model) {
+    public String addStudent(@ModelAttribute("student") @Valid StudentDTO studentDto,
+                             BindingResult bindingResult,
+                             Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("student", studentDto);
             return "students/add";
         }
-        studentService.save(studentDto); // ✅ сохраняем DTO напрямую
+        studentService.save(studentDto);
         return "redirect:/students";
     }
 
     @GetMapping("/{id}")
     public String viewStudent(@PathVariable Long id, Model model) {
         StudentDTO student = studentService.getById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid student ID: " + id)); // ✅ уже DTO
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student ID: " + id));
         model.addAttribute("student", student);
-        return "students/view";
+        return "students/view"; // шаблон: src/main/resources/templates/students/view.html
     }
 
     @PostMapping("/{id}/delete")

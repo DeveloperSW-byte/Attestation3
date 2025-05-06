@@ -11,3 +11,4 @@ public class SpringProjectLibraryApplication {
 	}
 
 }
+//docker-compose up

@@ -28,5 +28,5 @@ public class Student {
     private String phone;
     private String orgName;
 
-    private boolean active = true;
+//    private boolean active = true;
 }

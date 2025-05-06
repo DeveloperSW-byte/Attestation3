@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить зачисление</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Добавить зачисление</h1>
+
+<form th:action="@{/enrollments/add}" th:object="${enrollment}" method="post">
+    <label for="studentId">Студент:</label>
+    <select id="studentId" th:field="*{studentId}" required>
+        <option value="" disabled selected>Выберите студента</option>
+        <option th:each="student : ${students}"
+                th:value="${student.id}"
+                th:text="${student.firstName + ' ' + student.lastName}"></option>
+    </select>
+    <br/><br/>
+
+    <label for="courseId">Курс:</label>
+    <select id="courseId" th:field="*{courseId}" required>
+        <option value="" disabled selected>Выберите курс</option>
+        <option th:each="course : ${courses}"
+                th:value="${course.id}"
+                th:text="${course.title}"></option>
+    </select>
+    <br/><br/>
+
+    <label for="status">Статус:</label>
+    <input type="text" id="status" th:field="*{status}" placeholder="например: Активен" required/>
+    <br/><br/>
+
+    <label for="enrollmentDate">Дата зачисления:</label>
+    <input type="date" id="enrollmentDate" th:field="*{enrollmentDate}" required/>
+    <br/><br/>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<br/>
+<a href="/enrollments">Назад к списку</a>
+
+</body>
+</html>

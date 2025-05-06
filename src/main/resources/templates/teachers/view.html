@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Информация о преподавателе</title>
 </head>
 <body>
+<div th:replace="~{fragments/header :: body}"></div>
+
+<h1>Информация о преподавателе</h1>
+
+<p><strong>Имя:</strong> <span th:text="${teacher.firstName + ' ' + teacher.lastName}">Имя</span></p>
+<p><strong>Email:</strong> <span th:text="${teacher.email}">email@example.com</span></p>
+<p><strong>Кафедра:</strong> <span th:text="${teacher.department}">Кафедра</span></p>
+
+<a href="/teachers">← Назад к списку</a>
+<a th:href="@{'/teachers/' + ${teacher.id} + '/edit'}">Редактировать</a>
+
+<form th:action="@{'/teachers/' + ${teacher.id} + '/delete'}" method="post" style="display:inline;">
+    <button type="submit" onclick="return confirm('Удалить преподавателя?')">Удалить</button>
+</form>
 
 </body>
 </html>

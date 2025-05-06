@@ -1,15 +1,7 @@
 package ru.innopolis.spring.SpringProjectLibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
-import ru.innopolis.spring.SpringProjectLibrary.dto.TeacherDTO;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "teachers")
@@ -17,7 +9,7 @@ import ru.innopolis.spring.SpringProjectLibrary.dto.TeacherDTO;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Teacher extends TeacherDTO {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

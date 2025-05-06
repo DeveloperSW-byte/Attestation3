@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Просмотр зачисления</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Информация о зачислении</h1>
+
+<p><strong>ID:</strong> <span th:text="${enrollment.id}">ID</span></p>
+<p><strong>Студент:</strong> <span th:text="${enrollment.studentName}">Студент</span></p>
+<p><strong>Курс:</strong> <span th:text="${enrollment.courseTitle}">Курс</span></p>
+<p><strong>Статус:</strong> <span th:text="${enrollment.status}">Статус</span></p>
+<p><strong>Дата зачисления:</strong> <span th:text="${enrollment.enrollmentDate}">Дата</span></p>
+
+<br/>
+<a href="/enrollments">Назад</a>
+
+</body>
+</html>

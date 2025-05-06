@@ -39,6 +39,8 @@ public class StudentService {
         dto.setFirstName(student.getFirstName());
         dto.setLastName(student.getLastName());
         dto.setEmail(student.getEmail());
+        dto.setPhone(student.getPhone()); // добавлено
+        dto.setOrgName(student.getOrgName()); // добавлено
         return dto;
     }
 
@@ -48,6 +50,8 @@ public class StudentService {
         student.setFirstName(dto.getFirstName());
         student.setLastName(dto.getLastName());
         student.setEmail(dto.getEmail());
+        student.setPhone(dto.getPhone()); // добавлено
+        student.setOrgName(dto.getOrgName()); // добавлено
         return student;
     }
 }

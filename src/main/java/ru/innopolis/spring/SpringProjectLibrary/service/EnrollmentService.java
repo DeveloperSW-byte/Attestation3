@@ -47,6 +47,12 @@ public class EnrollmentService {
         dto.setStudentId(enrollment.getStudent().getId());
         dto.setCourseId(enrollment.getCourse().getId());
         dto.setEnrollmentDate(enrollment.getEnrollmentDate());
+        dto.setStatus(enrollment.getStatus());
+
+        // добавим имена для отображения
+        dto.setStudentName(enrollment.getStudent().getFirstName() + " " + enrollment.getStudent().getLastName());
+        dto.setCourseTitle(enrollment.getCourse().getTitle());
+
         return dto;
     }
 
@@ -61,6 +67,8 @@ public class EnrollmentService {
         enrollment.setStudent(student);
         enrollment.setCourse(course);
         enrollment.setEnrollmentDate(dto.getEnrollmentDate());
+        enrollment.setStatus(dto.getStatus());
+
         return enrollment;
     }
 }

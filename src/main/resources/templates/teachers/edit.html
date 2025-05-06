@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактировать преподавателя</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:replace="~{fragments/header :: body}"></div>
+
+<h1>Редактировать преподавателя</h1>
+<form th:action="@{/teachers/{id}/edit(id=${teacher.id})}" th:object="${teacher}" method="post">
+    <p>Имя: <input type="text" th:field="*{firstName}" /></p>
+    <p>Фамилия: <input type="text" th:field="*{lastName}" /></p>
+    <p>Email: <input type="email" th:field="*{email}" /></p>
+
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: body}"></div>
 
 <h1>Курсы</h1>
 
@@ -17,16 +17,14 @@
         <th>ID</th>
         <th>Название</th>
         <th>Описание</th>
-        <th>ID Преподавателя</th>
+        <th>Преподаватель</th>
     </tr>
     <tr th:each="course : ${courses}">
-        <td th:text="${course.id}"></td>
-        <td th:text="${course.title}"></td>
-        <td th:text="${course.description}"></td>
-        <td th:text="${course.teacher != null ? course.teacher.id : 'Нет преподавателя'}"></td>
-        <td>
-            <a th:href="@{/courses/{id}(id=${course.id})}">Просмотр</a> |
-            <a th:href="@{/courses/delete/{id}(id=${course.id})}">Удалить</a>
+        <td th:text="${course.id}">ID</td>
+        <td th:text="${course.title}">Название</td>
+        <td th:text="${course.description}">Описание</td>
+        <td th:text="${course.teacher != null ? course.teacher.firstName + ' ' + course.teacher.lastName : 'Нет преподавателя'}">
+            Преподаватель
         </td>
     </tr>
 </table>

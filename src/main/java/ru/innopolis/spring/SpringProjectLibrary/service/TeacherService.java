@@ -3,6 +3,7 @@ package ru.innopolis.spring.SpringProjectLibrary.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.innopolis.spring.SpringProjectLibrary.dto.TeacherDTO;
+import ru.innopolis.spring.SpringProjectLibrary.model.Teacher;
 import ru.innopolis.spring.SpringProjectLibrary.repository.TeacherRepository;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class TeacherService {
                 .map(TeacherDTO::fromEntity);
     }
 
-    public void save(TeacherDTO dto) {
-        teacherRepository.save(dto.toEntity());
+    public Teacher save(Teacher teacher) {
+        return teacherRepository.save(teacher);
     }
 
     public void delete(Long id) {

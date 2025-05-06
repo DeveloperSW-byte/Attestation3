@@ -1,6 +1,5 @@
 package ru.innopolis.spring.SpringProjectLibrary.service;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.innopolis.spring.SpringProjectLibrary.dto.CourseDTO;
@@ -8,6 +7,7 @@ import ru.innopolis.spring.SpringProjectLibrary.model.Course;
 import ru.innopolis.spring.SpringProjectLibrary.model.Teacher;
 import ru.innopolis.spring.SpringProjectLibrary.repository.CourseRepository;
 import ru.innopolis.spring.SpringProjectLibrary.repository.TeacherRepository;
+import ru.innopolis.spring.SpringProjectLibrary.repository.StudentRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,13 +20,15 @@ class CourseServiceTest {
 
     private CourseRepository courseRepository;
     private TeacherRepository teacherRepository;
+    private StudentRepository studentRepository;
     private CourseService courseService;
 
     @BeforeEach
     void setUp() {
         courseRepository = mock(CourseRepository.class);
         teacherRepository = mock(TeacherRepository.class);
-        courseService = new CourseService(courseRepository, teacherRepository);
+        studentRepository = mock(StudentRepository.class);
+        courseService = new CourseService(courseRepository, teacherRepository, studentRepository);
     }
 
     @Test

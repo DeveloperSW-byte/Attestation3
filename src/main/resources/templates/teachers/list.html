@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div th:replace="fragments/header :: body"></div>
-
+<div th:replace="~{fragments/header :: body}"></div>
+<a href="/teachers/add">Добавить преподавателя</a>
 <h1>Преподаватели</h1>
-<table border="1">
+<table>
     <tr>
-        <th>ID</th>
-        <th>ФИО</th>
+        <th>Имя</th>
         <th>Email</th>
-        <th>Кафедра</th>
+        <th>Действия</th>
     </tr>
     <tr th:each="teacher : ${teachers}">
-        <td th:text="${teacher.id}"></td>
-        <td th:text="${teacher.fullName}"></td>
-        <td th:text="${teacher.email}"></td>
-        <td th:text="${teacher.department}"></td>
+        <td th:text="${teacher.firstName + ' ' + teacher.lastName}">Имя</td>
+        <td th:text="${teacher.email}">Email</td>
+        <td>
+            <a th:href="@{'/teachers/' + ${teacher.id}}">Подробнее</a>
+            <a th:href="@{'/teachers/' + ${teacher.id} + '/edit'}">Редактировать</a>
+            <form th:action="@{'/teachers/' + ${teacher.id} + '/delete'}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Удалить преподавателя?')">Удалить</button>
+            </form>
+        </td>
     </tr>
-</table>
 </body>
 </html>

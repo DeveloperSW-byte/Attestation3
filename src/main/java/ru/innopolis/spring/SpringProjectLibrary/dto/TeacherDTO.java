@@ -10,6 +10,7 @@ public class TeacherDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private String department;
 
     public static TeacherDTO fromEntity(Teacher teacher) {
         TeacherDTO dto = new TeacherDTO();
@@ -17,6 +18,7 @@ public class TeacherDTO {
         dto.setFirstName(teacher.getFirstName());
         dto.setLastName(teacher.getLastName());
         dto.setEmail(teacher.getEmail());
+        dto.setDepartment(teacher.getDepartment());
         return dto;
     }
 
@@ -26,6 +28,7 @@ public class TeacherDTO {
         teacher.setFirstName(this.firstName);
         teacher.setLastName(this.lastName);
         teacher.setEmail(this.email);
+        teacher.setDepartment(this.department);
         return teacher;
     }
 }
